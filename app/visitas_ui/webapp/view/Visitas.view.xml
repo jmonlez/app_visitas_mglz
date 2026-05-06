@@ -1,0 +1,52 @@
+<mvc:View
+    controllerName="com.visitas.visitasui.controller.Visitas"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+
+    <Page id="page" title="Gestión de Visitas">
+
+        <content>
+            <VBox id="vboxMain" class="sapUiSmallMargin" width="100%">
+
+                <Text id="txtFecha" text="📅 Fecha: no establecida" />
+                <Text id="txtHora" text="⏰ Hora: no establecida" />
+                <Text id="txtGPS" text="📍 GPS: no obtenido" />
+
+                <Label id="lblEspacio1" text="" />
+
+                <Label id="lblEmpresa" text="Empresa" />
+                <Input id="empresa" placeholder="Introduzca el nombre de la empresa..." />
+                
+                <Label id="lblDireccion" text="Dirección" />
+                <Input id="direccion" placeholder="Introduzca la dirección..." />
+                
+                <Label id="lblContacto" text="Contacto" />
+                <Input id="contacto" placeholder="Introduzca contacto..." />
+                
+                <Label id="lblVisitante" text="Visitante" />
+                <Input id="visitante" placeholder="Introduzca nombre del visitante..." />
+
+                <Label id="lblObservaciones" text="Observaciones de la visita" />
+                <TextArea id="observaciones" placeholder="Observaciones..." rows="3"/>
+
+                <Label id="lblEspacio2" text="" />
+
+                <Button 
+                    id="btnLocation"
+                    text="📍 Ubicación" 
+                    press="onGetLocation" />
+
+                <Button 
+                    id="btnDateTime"
+                    text="🕒 Fecha y hora" 
+                    press="onSetDateTime" />
+
+                <Button 
+                    id="btnSave"
+                    text="💾 Guardar visita" 
+                    type="Emphasized" press="onSave" />
+
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>

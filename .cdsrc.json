@@ -1,0 +1,18 @@
+/* {
+    "requires":{
+        "db":{
+            "kind":"hana-cloud"
+        }
+    }
+} para btp profuctivo */
+
+{
+  "requires": {
+    "db": {
+      "kind": "sqlite",
+      "credentials": {
+        "url": "db.sqlite"
+      }
+    }
+  }
+} // para desarrollo local
