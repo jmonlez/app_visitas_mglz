@@ -1,0 +1,2 @@
+sap.ui.define(["com/visitas/visitasui/controller/Visitas.controller"],function(t){"use strict";QUnit.module("Visitas Controller");QUnit.test("I should test the Visitas controller",function(i){var s=new t;s.onInit();i.ok(s)})});
+//# sourceMappingURL=Visitas.controller.js.map

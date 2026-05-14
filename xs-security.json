@@ -1,6 +1,30 @@
 {
-  "scopes": [],
-  "attributes": [],
-  "role-templates": [],
-  "authorities-inheritance": false
+  "xsappname": "app_visitas",
+  "tenant-mode": "dedicated",
+
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.User",
+      "description": "Usuario normal"
+    },
+    {
+      "name": "$XSAPPNAME.Admin",
+      "description": "Administrador"
+    }
+  ],
+
+  "role-templates": [
+    {
+      "name": "User",
+      "scope-references": [
+        "$XSAPPNAME.User"
+      ]
+    },
+    {
+      "name": "Admin",
+      "scope-references": [
+        "$XSAPPNAME.Admin"
+      ]
+    }
+  ]
 }

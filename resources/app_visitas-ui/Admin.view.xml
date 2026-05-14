@@ -1,0 +1,80 @@
+<mvc:View
+    controllerName="com.visitas.visitasui.controller.Admin"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+
+    <Page id="adminPage" title="Registro de visitas 📊">
+
+        <content>
+
+            <Text id="txtContadorVisitas" text="Total visitas: {stats>/total}" />
+
+            <Table
+                id="tablaVisitas"
+                items="{
+                    path:'/Visitas',
+                    parameters: {
+                        $select: 'empresa,direccion,contacto,email,responsable,empleado,fecha,horaInicio,horaFin,latitud,longitud,observaciones,createdBy'
+                    }
+                }">
+
+                <columns>
+
+                    <Column id="clm1"><Text id="txtEmp" text="Empresa"/></Column>
+                    <Column id="clm2"><Text id="txtDir" text="Dirección"/></Column>
+                    <Column id="clm3"><Text id="txtCont" text="Contacto"/></Column>
+                    <Column id="clm4"><Text id="txtEmail" text="Email"/></Column>
+                    <Column id="clm5"><Text id="txtResp" text="Responsable"/></Column>
+                    <Column id="clm6"><Text id="txtEmpd" text="Empleado"/></Column>
+
+                    <Column id="clm7"><Text id="txtFe" text="Fecha"/></Column>
+                    <Column id="clm8"><Text id="txtInc" text="Inicio"/></Column>
+                    <Column id="clm9"><Text id="txtFin" text="Fin"/></Column>
+
+                    <Column id="clm10"><Text id="txtLat" text="GPS Lat"/></Column>
+                    <Column id="clm11"><Text id="txtLon" text="GPS Lon"/></Column>
+
+                    <Column id="clm12"><Text id="txtObs" text="Observaciones"/></Column>
+                    <Column id="clm13"><Text id="txtProp" text="Propietario"/></Column>
+
+                </columns>
+
+                <items>
+
+                    <ColumnListItem 
+                        id="clmListItem"
+                        highlight="{= ${createdBy} === ${user>/id} ? 'Success' : 'None' }">
+
+                        <cells>
+
+                            <Text id="txt1" text="{empresa}" />
+                            <Text id="txt2" text="{direccion}" />
+                            <Text id="txt3" text="{contacto}" />
+                            <Text id="txt4" text="{email}" />
+                            <Text id="txt5" text="{responsable}" />
+                            <Text id="txt6" text="{empleado}" />
+
+                            <Text id="txt7" text="{fecha}" />
+                            <Text id="txt8" text="{horaInicio}" />
+                            <Text id="txt9" text="{horaFin}" />
+
+                            <Text id="txt10" text="{latitud}" />
+                            <Text id="txt11" text="{longitud}" />
+
+                            <Text id="txt12" text="{observaciones}" />
+                            <Text id="txt13" text="{createdBy}" />
+
+                        </cells>
+
+                    </ColumnListItem>
+
+                </items>
+
+            </Table>
+
+        </content>
+
+    </Page>
+
+</mvc:View>

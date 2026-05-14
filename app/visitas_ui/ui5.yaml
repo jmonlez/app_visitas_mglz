@@ -1,5 +1,3 @@
-# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
-
 specVersion: "4.0"
 metadata:
   name: com.visitas.visitasui
@@ -9,15 +7,17 @@ server:
     - name: fiori-tools-proxy
       afterMiddleware: compression
       configuration:
-        ignoreCertErrors: false # If set to true, certificate errors will be ignored. E.g. self-signed certificates will be accepted
+        ignoreCertErrors: false
+        backend:
+          - path: /sap
+            url: http://localhost:4004
+          - path: /odata/v4/visitas/
+            url: http://localhost:4004
         ui5:
           path:
             - /resources
             - /test-resources
           url: https://ui5.sap.com
-        backend:
-          - path: /odata
-            url: http://localhost:4004
     - name: fiori-tools-appreload
       afterMiddleware: compression
       configuration:
@@ -27,5 +27,5 @@ server:
     - name: fiori-tools-preview
       afterMiddleware: fiori-tools-appreload
       configuration:
-        flp:
-          theme: sap_horizon
+        component: com.visitas.visitasui
+        ui5Theme: sap_horizon

@@ -1,56 +1,89 @@
 _schema-version: 3.3.0
 ID: app_visitas
 version: 1.0.0
-description: "A simple CAP project."
+description: CAP Visitas
+
 parameters:
   enable-parallel-deployments: true
+
 build-parameters:
   before-all:
     - builder: custom
       commands:
-        - npm ci
-        - npx cds build --production
+        - npm install
+
 modules:
+
   - name: app_visitas-srv
     type: nodejs
     path: gen/srv
     parameters:
-      instances: 1
       buildpack: nodejs_buildpack
-    build-parameters:
-      builder: npm-ci
-    provides:
-      - name: srv-api # required by consumers of CAP services (e.g. approuter)
-        properties:
-          srv-url: ${default-url}
     requires:
       - name: app_visitas-auth
-      - name: app_visitas-db
+      - name: app_visitas-hdi
+    provides:
+      - name: srv-api
+        properties:
+          srv-url: ${default-url}
 
   - name: app_visitas-db-deployer
     type: hdb
     path: gen/db
+    requires:
+      - name: app_visitas-hdi
     parameters:
       buildpack: nodejs_buildpack
+
+  - name: app_visitas-ui
+    type: html5
+    path: app/visitas_ui
+    build-parameters:
+      builder: custom
+      commands:
+        - npm install
+        - npm run build
+      build-result: dist
+
+  - name: app_visitas-ui-deployer
+    type: com.sap.application.content
+    path: app/visitas_ui 
     requires:
-      - name: app_visitas-db
+      - name: app_visitas-html5-repo
+
+    build-parameters:
+      requires:
+        - name: app_visitas-ui
+          artifacts:
+            - dist/**
+          target-path: resources/
+        
+    parameters:
+      content:
+        instance:
+          destinations:
+            - name: app_visitas-html5-repo
+              service-instance-name: app_visitas-html5-repo
+              service-key-name: app_visitas-ui-deployer-app_visitas-html5-repo-credentials
+              sap.cloud.service: app_visitas
 
 resources:
+
   - name: app_visitas-auth
     type: org.cloudfoundry.managed-service
     parameters:
       service: xsuaa
       service-plan: application
       path: ./xs-security.json
-      config:
-        xsappname: app_visitas-${org}-${space}
-        tenant-mode: dedicated
-        oauth2-configuration:
-          credential-types:
-            - "binding-secret"
-            - "x509"
-  - name: app_visitas-db
+
+  - name: app_visitas-hdi
     type: com.sap.xs.hdi-container
     parameters:
       service: hana
       service-plan: hdi-shared
+
+  - name: app_visitas-html5-repo
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-plan: app-host

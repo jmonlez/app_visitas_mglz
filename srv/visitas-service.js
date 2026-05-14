@@ -1,12 +1,13 @@
-/* module.exports = (srv) => {
+const cds = require('@sap/cds');
 
-    srv.before('CREATE', 'Visitas', (req) => {
+module.exports = cds.service.impl(function () {
 
-        // usuario logado
-        const user = req.user.id;
+    const { Visitas } = this.entities;
 
-        // lo añadimos automáticamente
-        req.data.createdBy = user;
+    this.before('CREATE', Visitas, (req) => {
+
+        req.data.createdBy = req.user?.id || 'local-user';
+
     });
 
-}; */
+});
