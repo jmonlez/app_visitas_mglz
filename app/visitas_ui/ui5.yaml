@@ -1,7 +1,15 @@
-specVersion: "4.0"
+specVersion: "3.0"
 metadata:
   name: com.visitas.visitasui
 type: application
+
+builder:
+  customTasks: 
+    - name: ui5-task-zipper
+      afterTask: generateCachebusterInfo
+      configuration:
+        archiveName: app_visitas-ui
+
 server:
   customMiddleware:
     - name: fiori-tools-proxy
@@ -29,3 +37,6 @@ server:
       configuration:
         component: com.visitas.visitasui
         ui5Theme: sap_horizon
+
+
+
