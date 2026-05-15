@@ -1,0 +1,191 @@
+{
+  "namespace": "visitas",
+  "definitions": {
+    "visitas.Visitas": {
+      "kind": "entity",
+      "elements": {
+        "ID": {
+          "key": true,
+          "type": "cds.UUID"
+        },
+        "fecha": {
+          "type": "cds.Date"
+        },
+        "horaInicio": {
+          "type": "cds.Time"
+        },
+        "horaFin": {
+          "type": "cds.Time"
+        },
+        "latitud": {
+          "type": "cds.Decimal",
+          "precision": 9,
+          "scale": 6
+        },
+        "longitud": {
+          "type": "cds.Decimal",
+          "precision": 9,
+          "scale": 6
+        },
+        "empresa": {
+          "type": "cds.String",
+          "length": 100
+        },
+        "direccion": {
+          "type": "cds.String",
+          "length": 200
+        },
+        "contacto": {
+          "type": "cds.String",
+          "length": 100
+        },
+        "email": {
+          "type": "cds.String",
+          "length": 150
+        },
+        "responsable": {
+          "type": "cds.String",
+          "length": 100
+        },
+        "empleado": {
+          "type": "cds.String",
+          "length": 100
+        },
+        "observaciones": {
+          "type": "cds.String",
+          "length": 500
+        },
+        "createdBy": {
+          "type": "cds.String",
+          "length": 255
+        }
+      }
+    },
+    "VisitasService": {
+      "@source": "srv/visitas-service.cds",
+      "kind": "service"
+    },
+    "VisitasService.Visitas": {
+      "kind": "entity",
+      "projection": {
+        "from": {
+          "ref": [
+            "visitas.Visitas"
+          ]
+        }
+      },
+      "elements": {
+        "ID": {
+          "key": true,
+          "type": "cds.UUID"
+        },
+        "fecha": {
+          "type": "cds.Date"
+        },
+        "horaInicio": {
+          "type": "cds.Time"
+        },
+        "horaFin": {
+          "type": "cds.Time"
+        },
+        "latitud": {
+          "type": "cds.Decimal",
+          "precision": 9,
+          "scale": 6
+        },
+        "longitud": {
+          "type": "cds.Decimal",
+          "precision": 9,
+          "scale": 6
+        },
+        "empresa": {
+          "type": "cds.String",
+          "length": 100
+        },
+        "direccion": {
+          "type": "cds.String",
+          "length": 200
+        },
+        "contacto": {
+          "type": "cds.String",
+          "length": 100
+        },
+        "email": {
+          "type": "cds.String",
+          "length": 150
+        },
+        "responsable": {
+          "type": "cds.String",
+          "length": 100
+        },
+        "empleado": {
+          "type": "cds.String",
+          "length": 100
+        },
+        "observaciones": {
+          "type": "cds.String",
+          "length": 500
+        },
+        "createdBy": {
+          "type": "cds.String",
+          "length": 255
+        }
+      }
+    },
+    "cds.outbox.Messages": {
+      "kind": "entity",
+      "elements": {
+        "ID": {
+          "key": true,
+          "type": "cds.UUID"
+        },
+        "timestamp": {
+          "type": "cds.Timestamp"
+        },
+        "target": {
+          "type": "cds.String"
+        },
+        "msg": {
+          "type": "cds.LargeString"
+        },
+        "attempts": {
+          "type": "cds.Integer",
+          "default": {
+            "val": 0
+          }
+        },
+        "partition": {
+          "type": "cds.Integer",
+          "default": {
+            "val": 0
+          }
+        },
+        "lastError": {
+          "type": "cds.LargeString"
+        },
+        "lastAttemptTimestamp": {
+          "type": "cds.Timestamp"
+        },
+        "status": {
+          "type": "cds.String",
+          "length": 23
+        },
+        "task": {
+          "type": "cds.String",
+          "length": 255
+        },
+        "appid": {
+          "type": "cds.String",
+          "length": 255
+        }
+      }
+    }
+  },
+  "meta": {
+    "creator": "CDS Compiler v6.9.2",
+    "compilerVersion": "6.9.2",
+    "compilerCsnFlavor": "inferred",
+    "flavor": "inferred"
+  },
+  "$version": "2.0"
+}

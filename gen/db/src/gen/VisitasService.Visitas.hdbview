@@ -1,0 +1,16 @@
+VIEW VisitasService_Visitas AS SELECT
+  Visitas_0.ID,
+  Visitas_0.fecha,
+  Visitas_0.horaInicio,
+  Visitas_0.horaFin,
+  Visitas_0.latitud,
+  Visitas_0.longitud,
+  Visitas_0.empresa,
+  Visitas_0.direccion,
+  Visitas_0.contacto,
+  Visitas_0.email,
+  Visitas_0.responsable,
+  Visitas_0.empleado,
+  Visitas_0.observaciones,
+  Visitas_0.createdBy
+FROM visitas_Visitas AS Visitas_0
